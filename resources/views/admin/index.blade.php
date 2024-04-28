@@ -114,7 +114,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="#" class="nav-link">
                                 <i class="far fa-address-card"></i>
                                 <p class="text-rigth">
-                                    eDITAR
+                                    editasesto
                                 </p>
                             </a>
                         </li>
