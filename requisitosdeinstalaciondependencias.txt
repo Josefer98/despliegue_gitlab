@@ -1,0 +1,33 @@
+comandos laravel
+php artisan serve 
+iniciar servidor
+
+Rutas necesarias 
+Http\controllers
+Models
+database\migrations
+	aqui se encuentra las tablas
+resources\views
+routes\web.php
+
+otro paso instalar 
+composer require laravel/ui
+y requiere 
+npm install ; npm run dev
+o && de cuenta del ; ya que algunos terminal no reconocen
+y si tenemos un error de libreria instalar esta dependencia
+
+npm install bootstrap axios
+
+php artisan ui bootstrap
+
+php artisan ui bootstrap --auth
+
+
+crear controladores
+php artisan make:Controller AdminController
+
+
+
+proceos para migrar
+php artisan migrate
