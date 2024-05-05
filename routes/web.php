@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\TemaController;
+use App\Http\Controllers\DocenteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,3 +35,7 @@ Route::post('/usuarios/{id}/asignar-tema-action', [UsuarioController::class, 'as
 
 Route::get('/usuarios/{usuario}/desasignar-tema', [UsuarioController::class, 'desasignarTema'])->name('desasignar.tema');
 Route::get('/usuarios/{usuario}/detalles-registro', [UsuarioController::class, 'detallesRegistro'])->name('detalles.registro');
+
+
+Route::resource('temas',TemaController::class)->middleware('auth');
+Route::resource('docentes',DocenteController::class)->middleware('auth');
