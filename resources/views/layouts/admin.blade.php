@@ -114,7 +114,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('/docente') }}" class="nav-link">
                                 <i class="nav-icon fas"><i class="far fa-address-card"></i></i>
                                 <p class="text-rigth">
                                     Docentes
