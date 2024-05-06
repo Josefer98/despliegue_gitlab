@@ -9,10 +9,36 @@ use Illuminate\Support\Facades\Storage;
 
 class TemaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-       $temas = Temas::all();
-       return view('temas.index',compact('temas'));
+        $busqueda = $request->busqueda;
+
+        $temas = Temas::query();
+
+        if ($busqueda) {
+            // Buscar tutor en la tabla Docentes
+            $tutor = Docente::where('nombre', 'LIKE', '%' . $busqueda . '%')
+                            ->orWhere('apellidos','LIKE', '%' . $busqueda . '%')
+                            ->where('rol', 'tutor')
+                            ->first();;
+            // Si se encontró un tutor, filtrar por el ID del tutor
+            if ($tutor) {
+                $temas->where('docente_id', $tutor->id_docente);
+            }else{
+                // Filtrar por palabras clave, título o estado
+                $temas->where('palabras_clave', 'LIKE', '%' . $busqueda . '%')
+                        ->orWhere('titulo', 'LIKE', '%' . $busqueda . '%')
+                        ->orWhere('estado', $busqueda);
+            }
+        }
+
+        $temas = $temas->get();
+
+        if ($temas->isEmpty()) {
+            $temas = Temas::all();
+        }
+
+        return view('temas.index', compact('temas'));
     }
 
     public function create()

@@ -56,7 +56,7 @@
                         <label for="exampleInputFile">Subir PDF</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="pdfFile" name="pdfFile">
+                                <input type="file" class="custom-file-input" id="pdfFile" name="pdfFile" onchange="updateFileName(this)">
                                 <label class="custom-file-label" for="pdfFile">Elegir archivo</label>
                             </div>
                         </div>
@@ -73,3 +73,11 @@
 
     </div>
 @endsection
+
+<script>
+    function updateFileName(input) {
+        var fileName = input.files[0].name;
+        var label = input.nextElementSibling;
+        label.innerText = fileName;
+    }
+</script>
