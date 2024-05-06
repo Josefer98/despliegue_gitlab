@@ -38,4 +38,4 @@ Route::get('/usuarios/{usuario}/detalles-registro', [UsuarioController::class, '
 
 
 Route::resource('temas',TemaController::class)->middleware('auth');
-Route::resource('docentes',DocenteController::class)->middleware('auth');
+Route::resource('docente',DocenteController::class)->middleware('auth');
