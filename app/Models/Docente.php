@@ -12,6 +12,6 @@ class Docente extends Model
     protected $fillable = ['nombre','apellidos','email','telefono','rol'];
     public function temas()
     {
-        return $this->hasMany(Tema::class, 'docente_id', 'id_docente');
+        return $this->hasMany(Temas::class, 'docente_id', 'id_docente');
     }
 }

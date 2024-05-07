@@ -3,6 +3,31 @@
 
 @section('content')
 <div class="row">
+    <div class="row">
+        <div class="">
+        <form id="searchForm" action="{{ route('temas.index') }}" method="GET">
+            <div style="display: flex; justify-content: space-between;">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info">Filtrar</button>
+                    <button type="button" class="btn btn-info" data-toggle="dropdown" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span><img src="{{ asset('dist/img/icons/filter.png') }}" alt="Ícono 1">
+                    </button>
+                    <div class="dropdown-menu" role="menu" style="">
+                        <a class="dropdown-item filter-item" href="#" data-value="libre">Temas libre</a>
+                        <a class="dropdown-item filter-item" href="#" data-value="asignado">Temas asignados</a>
+                        <a class="dropdown-item filter-item" href="#" data-value="">Todos</a>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <input type="search" class="form-control form-control-lg" id="searchInput" name="busqueda" placeholder="Buscar temas...">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-lg btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
         <div class="card">
             <div class="card-header border-transparent">
                 <h3 class="card-title">Temas de Grado</h3>
@@ -38,9 +63,9 @@
                                     <td>{{$tema -> descripcion}}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{ asset($tema->pdf_file) }}" target="_blank" class="btn btn-primary">PDF</a>
-                                            <a href="{{route('temas.edit',$tema->id_tema)}}" class="btn btn-success">Editar</a>
-                                            <button type="button" onclick="confirmDelete('{{$tema->id_tema}}')" class="btn btn-danger">Eliminar</button>
+                                            <a href="{{ asset($tema->pdf_file) }}" target="_blank" class="btn btn-default"><img src="{{ asset('dist/img/icons/pdf.png') }}" alt="Ícono 1"></a>
+                                            <a href="{{route('temas.edit',$tema->id_tema)}}" class="btn btn-default"><img src="{{ asset('dist/img/icons/editar.png') }}" alt="Ícono 2"></a>
+                                            <button type="button" onclick="confirmDelete('{{$tema->id_tema}}')" class="btn btn-default"><img src="{{ asset('dist/img/icons/borrar.png') }}" alt="Ícono 3"></button>
                                             
                                         </div>
                                     </td>
@@ -55,7 +80,7 @@
 
             <div class="card-footer clearfix">
                 <!-- <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a> -->
-                <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Ver todos</a>
+                <a href="{{ route('temas.index') }}" class="btn btn-sm btn-secondary float-right">Ver todos</a>
             </div>
 
         </div>
@@ -76,4 +101,16 @@
             return false;
         }
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterItems = document.querySelectorAll('.filter-item');
+        filterItems.forEach(function(item) {
+            item.addEventListener('mousedown', function(event) {
+                event.preventDefault();
+                const filterValue = this.getAttribute('data-value');
+                document.getElementById('searchInput').value = filterValue;
+                document.getElementById('searchForm').submit();
+            });
+        });
+    });
 </script>
