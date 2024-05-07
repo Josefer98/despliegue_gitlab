@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\User;
+
+use App\Models\Temas;
+
 
 class UsuarioController extends Controller
 {
@@ -104,26 +108,24 @@ class UsuarioController extends Controller
         // Simulamos una consulta para obtener el usuario por su ID
         $usuario = User::find($id);
 
-        // Array estático de temas de grado disponibles
-        $temasDisponibles = [
-            'Tema 1',
-            'Tema 2',
-            'Tema 3',
-            'Tema 4',
-        ];
+        // Obtener todos los temas disponibles
+        $temasDisponibles = Temas::where('estado', 'libre')->get();
 
         // Retornar vista con datos necesarios
         return view('admin.usuarios.asignar-tema', compact('usuario', 'temasDisponibles'));
+
     }
 
     // Método para asignar el tema seleccionado al usuario
     public function asignarTemaAction(Request $request, $id)
     {
         // Simulamos una consulta para obtener el usuario por su ID
+// Simulamos una consulta para obtener el usuario por su ID
         $usuario = User::find($id);
 
         // Asignamos el tema seleccionado al usuario
-        $usuario->tema_asignado = $request->tema;
+        $usuario->tema_asignado = $request->tema_id;
+
 
         // Guardamos los cambios en el usuario
         $usuario->save();
@@ -148,6 +150,7 @@ class UsuarioController extends Controller
         // Redirigimos al usuario a la lista de estudiantes
         return redirect()->route('usuarios.index')->with('success', 'Tema desasignado correctamente.');
     }
+
 
     public function detallesRegistro($id)
     {
