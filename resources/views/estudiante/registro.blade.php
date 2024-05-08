@@ -62,6 +62,34 @@
                                 </div>
                             </div>
 
+                            <div class="form-group row">
+                                <label for="curso" class="col-md-4 col-form-label text-md-right">{{ __('Curso') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="curso" type="number" min="1" max="9" class="form-control @error('curso') is-invalid @enderror" name="curso" value="{{ old('curso') }}" required>
+
+                                    @error('curso')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="cu" class="col-md-4 col-form-label text-md-right">{{ __('Carné Universitario') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="cu" type="text" class="form-control @error('cu') is-invalid @enderror" name="cu" value="{{ old('cu') }}" required>
+
+                                    @error('cu')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
