@@ -14,7 +14,7 @@
                     <h3 class="card-title">Datos registrados</h3>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="ml-auto">
-                            <a class="btn btn-primary" href="{{ url('/usuarios/create') }}">Agregar Nuevo Usuario <i
+                            <a class="btn btn-primary" href="{{ url('/usuarios/create') }}">Agregar Nuevo Estudiante<i
                                     class="fas fa-user-plus ml-2"></i></a>
                         </div>
                     </div>
@@ -25,13 +25,19 @@
                         <thead>
                             <tr>
                                 <th style="width: 5%">
-                                    ID
+                                    N°
                                 </th>
-                                <th style="width: 15%">
-                                    Nombre Completo
+                                <th style="width: 10%">
+                                    Carnet Universitario
                                 </th>
                                 <th style="width: 20%">
+                                    Nombre Completo
+                                </th>
+                                <th style="width: 15%">
                                     Correo
+                                </th>
+                                <th style="width: 5%">
+                                    Curso
                                 </th>
                                 <th style="width: 10%">
                                     Acciones
@@ -48,18 +54,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($usuarios as $usuario)
+                            @foreach ($estudiantes as $estudiante) <!-- Cambiado a estudiantes -->
                                 <tr>
-                                    <td>{{ $usuario->id }}</td>
-                                    <td>{{ $usuario->name }}</td>
-                                    <td>{{ $usuario->email }}</td>
+                                    <td>{{ $estudiante->id }}</td>
+                                    <td>{{ $estudiante->cu }}</td>
+                                    <td>{{ $estudiante->name }}</td>
+                                    <td>{{ $estudiante->email }}</td>
+                                    <td>{{ $estudiante->curso }}</td>
                                     <td class="text-center">
                                         <div class="btn-group">
-                                            <a href="{{ route('usuarios.edit', $usuario->id) }}"
+                                            <a href="{{ route('usuarios.edit', $estudiante->id) }}"
                                                 class="btn btn-info btn-sm">
                                                 <i class="fas fa-pencil-alt"></i> Edit
                                             </a>
-                                            <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST"
+                                            <form action="{{ route('usuarios.destroy', $estudiante->id) }}" method="POST"
                                                 onsubmit="return confirm('¿Estás seguro de que quieres eliminar este usuario?');">
                                                 @csrf
                                                 @method('DELETE')
@@ -69,21 +77,22 @@
                                             </form>
                                         </div>
                                     </td>
-                                    <td>{{ $usuario->tema_asignado ?? 'Ningún tema asignado' }}</td>
-
-                                    <td>
+                                   <td>
+                                        {{ $estudiante->temas->titulo ?? 'Ningún tema asignado' }}
+                                    </td>                                       
+                                    <td>                                        
                                         <!-- Botones para asignar, desasignar -->
-                                        <a href="{{ route('asignar-tema', $usuario->id) }}" class="btn btn-success btn-sm">
+                                        <a href="{{ url('usuarios/asignar-tema', $estudiante->id) }}" class="btn btn-success btn-sm">
                                             <i class="fas fa-plus"></i> Asignar Tema
                                         </a>
-                                        <a href="{{ route('desasignar.tema', $usuario->id) }}"
+                                        <a href="{{ route('desasignar.tema', $estudiante->id) }}"
                                             class="btn btn-warning btn-sm">
                                             <i class="fas fa-minus"></i> Desasignar Tema
                                         </a>
                                     </td>
                                     <td>
                                         <!-- Botón para detalles -->
-                                        <a href="{{ route('detalles.registro', $usuario->id) }}"
+                                        <a href="{{ route('detalles.registro', $estudiante->id) }}"
                                             class="btn btn-primary btn-sm">
                                             <i class="fas fa-eye"></i> Detalles
                                         </a>

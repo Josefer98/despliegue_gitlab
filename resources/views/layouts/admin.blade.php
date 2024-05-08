@@ -122,12 +122,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <li class="nav-item">
                             <a href="{{ url('/docente') }}" class="nav-link">
-                                <i class="nav-icon fas"><i class="fas fa-user-circle"></i></i>
-                                <p class="text-rigth">
+                                <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                                <p class="text-right">
                                     Docentes
                                 </p>
                             </a>
-                        </li>
+                        </li>                        
 
                         <li class="nav-item">
                             <a href="{{ url('/temas') }}" class="nav-link">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Temas;
+use App\Models\Estudiante;
 use App\Models\Docente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -158,4 +159,5 @@ class TemaController extends Controller
 
         return redirect()->route('temas.index');
     }
+     
 }

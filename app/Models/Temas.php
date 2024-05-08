@@ -15,4 +15,10 @@ class Temas extends Model
     {
         return $this->belongsTo(Docente::class, 'docente_id', 'id_docente');
     }
+
+    public function estudiante()
+    {
+        return $this->hasMany(Estudiante::class, 'tema_asignado', 'id_tema');
+    }
+
 }
