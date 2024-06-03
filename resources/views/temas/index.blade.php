@@ -58,6 +58,8 @@
                                             <span class="badge badge-success">Libre</span>
                                         @elseif ($tema->estado == 'asignado')
                                             <span class="badge badge-danger">Asignado</span>
+                                        @elseif ($tema->estado == 'terminado')
+                                            <span class="badge badge-danger">Terminado</span>
                                         @endif
                                     </td>
                                     <td>{{$tema -> descripcion}}</td>

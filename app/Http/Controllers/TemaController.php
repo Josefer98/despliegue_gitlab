@@ -58,7 +58,7 @@ class TemaController extends Controller
             'titulo'=>'required|string',
             'palabras_clave'=>'string',
             'docente_id'=>'required|integer|min:1',
-            'estado'=>'required|in:libre,asignado',
+            'estado'=>'required|in:libre,asignado,terminado',
             'descripcion'=>'string',
             'pdfFile' => 'file|mimes:pdf'
             
@@ -112,7 +112,7 @@ class TemaController extends Controller
             'titulo'=>'required|string',
             'palabras_clave'=>'string',
             'docente_id'=>'required|integer|min:1',
-            'estado'=>'required|in:libre,asignado',
+            'estado'=>'required|in:libre,asignado,terminado',
             'descripcion'=>'string',
             'pdfFile' => 'file|mimes:pdf'       
         ]);

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_tema');
             $table->string('titulo');
             $table->string('palabras_clave');
-            $table->enum('estado', ['asignado', 'libre']);
+            $table->enum('estado', ['asignado', 'libre', 'terminado']);
             $table->text('descripcion');
             $table->text('pdf_file');
             

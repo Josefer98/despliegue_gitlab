@@ -41,6 +41,7 @@
                                 <select class="form-control" name="estado">
                                     <option value="libre" {{ $tema->estado == 'libre' ? 'selected' : '' }}>Libre</option>
                                     <option value="asignado" {{ $tema->estado == 'asignado' ? 'selected' : '' }}>Asignado</option>
+                                    <option value="terminado" {{ $tema->estado == 'terminado' ? 'selected' : '' }}>Terminado</option>
                                 </select>
                             </div>
                         </div>

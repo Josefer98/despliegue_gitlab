@@ -41,6 +41,7 @@
                                 <select class="form-control" name="estado">
                                     <option value="libre" selected>Libre</option>
                                     <option value="asignado">Asignado</option>
+                                    <option value="terminado">Terminado</option>
                                 </select>
                             </div>
                         </div>
