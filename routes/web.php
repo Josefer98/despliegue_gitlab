@@ -41,3 +41,10 @@ Route::get('/usuarios/{id}/detalles-registro', [EstudiantesController::class, 'd
 
 Route::resource('temas',TemaController::class)->middleware('auth');
 Route::resource('docente',DocenteController::class)->middleware('auth');
+
+Route::get('/temas/informacion/{tema}',[TemaController::class, 'informacion'])->name('temas.informacion');
+Route::get('/asesor',[TemaController::class, 'asesor'])->name('temas.asesor');
+
+// Route::get('/asesor', function () {
+//     return "view('welcome')";
+// })->name('temas.asesor');

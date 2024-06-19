@@ -2,80 +2,90 @@
 
 
 @section('content')
-<div class="row">
     <div class="row">
-        <div class="">
-        <form id="searchForm" action="{{ route('temas.index') }}" method="GET">
-            <div style="display: flex; justify-content: space-between;">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-info">Filtrar</button>
-                    <button type="button" class="btn btn-info" data-toggle="dropdown" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span><img src="{{ asset('dist/img/icons/filter.png') }}" alt="Ícono 1">
-                    </button>
-                    <div class="dropdown-menu" role="menu" style="">
-                        <a class="dropdown-item filter-item" href="#" data-value="libre">Temas libre</a>
-                        <a class="dropdown-item filter-item" href="#" data-value="asignado">Temas asignados</a>
-                        <a class="dropdown-item filter-item" href="#" data-value="">Todos</a>
+        <div class="row">
+            <div class="">
+                <form id="searchForm" action="{{ route('temas.index') }}" method="GET">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info">Filtrar</button>
+                            <button type="button" class="btn btn-info" data-toggle="dropdown" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span><img
+                                    src="{{ asset('dist/img/icons/filter.png') }}" alt="Ícono 1">
+                            </button>
+                            <div class="dropdown-menu" role="menu" style="">
+                                <a class="dropdown-item filter-item" href="#" data-value="libre">Temas libre</a>
+                                <a class="dropdown-item filter-item" href="#" data-value="asignado">Temas
+                                    asignados</a>
+                                <a class="dropdown-item filter-item" href="#" data-value="">Todos</a>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="search" class="form-control form-control-lg" id="searchInput" name="busqueda"
+                                placeholder="Buscar temas...">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-lg btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="input-group">
-                    <input type="search" class="form-control form-control-lg" id="searchInput" name="busqueda" placeholder="Buscar temas...">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-lg btn-default"><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
+                </form>
             </div>
-        </form>
         </div>
-    </div>
         <div class="card">
             <div class="card-header border-transparent">
                 <h3 class="card-title">Temas de Grado</h3>
                 <div class="card-tools">
-                    <a href="{{route('temas.create')}}" type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Agregar Tema</a>
+                    <a href="{{ route('temas.create') }}" type="button" class="btn btn-primary float-right"><i
+                            class="fas fa-plus"></i> Agregar Tema</a>
                 </div>
             </div>
+            
+            <div class="row">
+                @foreach ($temas as $tema)
+                    @if ($tema->area == "Ciencias de la Computación")
+                    <div class="col-lg-3 col-6">
 
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table m-0">
-                        <thead>
-                            <tr>
-                                <th>Titulo</th>
-                                <th>Tutor</th>
-                                <th>Estado</th>
-                                <th>descripción</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($temas as $tema)
-                                <tr>
-                                    <td>{{$tema -> titulo}}</td>
-                                    <td>{{ $tema->docente->nombre }} {{ $tema->docente->apellidos }}</td>
-                                    <td>
-                                        @if ($tema->estado == 'libre')
-                                            <span class="badge badge-success">Libre</span>
-                                        @elseif ($tema->estado == 'asignado')
-                                            <span class="badge badge-danger">Asignado</span>
-                                        @endif
-                                    </td>
-                                    <td>{{$tema -> descripcion}}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a href="{{ asset($tema->pdf_file) }}" target="_blank" class="btn btn-default"><img src="{{ asset('dist/img/icons/pdf.png') }}" alt="Ícono 1"></a>
-                                            <a href="{{route('temas.edit',$tema->id_tema)}}" class="btn btn-default"><img src="{{ asset('dist/img/icons/editar.png') }}" alt="Ícono 2"></a>
-                                            <button type="button" onclick="confirmDelete('{{$tema->id_tema}}')" class="btn btn-default"><img src="{{ asset('dist/img/icons/borrar.png') }}" alt="Ícono 3"></button>
-                                            
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            
-                        </tbody>
-                    </table>
-                </div>
+                        <div class="small-box bg-info">
+                            <div class="inner" style="min-height: 200px">
+                                <h1 style="font-size: 25px">{{$tema->titulo}}</h1>
+                                <p style="padding-top: 10px">Carrera: {{$tema->area}}</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="{{ route('temas.informacion',$tema->id_tema) }}" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    @elseif ($tema->area == "Sistemas")
+                    <div class="col-lg-3 col-6">
 
+                        <div class="small-box bg-success">
+                            <div class="inner" style="min-height: 200px">
+                                <h1 style="font-size: 25px">{{$tema->titulo}}</sup></h1>
+                                <p style="padding-top: 10px">Carrera: {{$tema->area}}</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <a href="{{ route('temas.informacion',$tema->id_tema) }}" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    @else
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box bg-danger">
+                            <div class="inner" style="min-height: 200px">
+                                <h1 style="font-size: 25px">{{$tema->titulo}}</h1>
+                                <p style="padding-top: 10px">Carrera: {{$tema->area}}</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                            <a href="{{ route('temas.informacion',$tema->id_tema) }}" class="small-box-footer">Más información<i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    @endif
+                @endforeach
             </div>
 
             <div class="card-footer clearfix">
@@ -88,13 +98,13 @@
 @endsection
 
 <script>
-    function confirmDelete(id){
+    function confirmDelete(id) {
         var res = window.confirm('Seguro que quiere eliminar el tema');
-        if(res){
+        if (res) {
             let form = document.createElement('form');
             form.method = 'POST';
             form.action = `/temas/${id}`;
-            form.innerHTML = '@csrf @method("DELETE")';
+            form.innerHTML = '@csrf @method('DELETE')';
             document.body.appendChild(form);
             form.submit();
         } else {
