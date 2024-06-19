@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->string('area');
             $table->string('palabras_clave');
-            $table->enum('estado', ['asignado', 'libre']);
+            $table->enum('estado', ['asignado', 'libre', 'terminado']);
             $table->text('descripcion');
             $table->text('pdf_file');
             
