@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('temas', function (Blueprint $table) {
             $table->id('id_tema');
             $table->string('titulo');
+            $table->string('area');
             $table->string('palabras_clave');
             $table->enum('estado', ['asignado', 'libre', 'terminado']);
             $table->text('descripcion');

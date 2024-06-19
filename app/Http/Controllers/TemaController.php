@@ -56,6 +56,7 @@ class TemaController extends Controller
         $docenteId = $request->input('docente_id');
         $request->validate([
             'titulo'=>'required|string',
+            'area'=>'required|string',
             'palabras_clave'=>'string',
             'docente_id'=>'required|integer|min:1',
             'estado'=>'required|in:libre,asignado,terminado',
@@ -79,6 +80,7 @@ class TemaController extends Controller
         // Crear un nuevo objeto Tema con los datos del formulario y guardarlo en la base de datos
         Temas::create([
             'titulo' => $request->titulo,
+            'area' => $request->area,
             'palabras_clave' => $request->palabras_clave,
             'docente_id' => $docenteId,
             'estado' => $request->estado,
@@ -159,5 +161,41 @@ class TemaController extends Controller
 
         return redirect()->route('temas.index');
     }
+
+    public function informacion($tema){
+        $temas = Temas::findOrFail($tema);
+        return view('temas.info', compact('temas'));
+    }
      
+    public function asesor(Request $request)
+    {
+        $busqueda = $request->busqueda;
+
+        $temas = Temas::query();
+
+        if ($busqueda) {
+            // Buscar tutor en la tabla Docentes
+            $tutor = Docente::where('nombre', 'LIKE', '%' . $busqueda . '%')
+                            ->orWhere('apellidos','LIKE', '%' . $busqueda . '%')
+                            ->where('rol', 'tutor')
+                            ->first();;
+            // Si se encontró un tutor, filtrar por el ID del tutor
+            if ($tutor) {
+                $temas->where('docente_id', $tutor->id_docente);
+            }else{
+                // Filtrar por palabras clave, título o estado
+                $temas->where('palabras_clave', 'LIKE', '%' . $busqueda . '%')
+                        ->orWhere('titulo', 'LIKE', '%' . $busqueda . '%')
+                        ->orWhere('estado', $busqueda);
+            }
+        }
+
+        $temas = $temas->get();
+
+        if ($temas->isEmpty()) {
+            $temas = Temas::all();
+        }
+
+        return view('temas.asesor', compact('temas'));
+    }
 }

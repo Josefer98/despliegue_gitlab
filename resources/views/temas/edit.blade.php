@@ -66,7 +66,7 @@
 
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Actualizar</button>
-                    <a href="{{route('temas.index')}}" class="btn btn-default float-right">Cancel</a>
+                    <a href="{{route('temas.informacion',$tema->id_tema)}}" class="btn btn-default float-right">Cancel</a>
                 </div>
             </form>
         </div>

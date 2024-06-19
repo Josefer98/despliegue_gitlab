@@ -45,6 +45,11 @@ Route::resource('temas',TemaController::class)->middleware('auth');
 Route::resource('docente',DocenteController::class)->middleware('auth');
 
 
+Route::get('/temas/informacion/{tema}',[TemaController::class, 'informacion'])->name('temas.informacion');
+Route::get('/asesor',[TemaController::class, 'asesor'])->name('temas.asesor');
+
+
+
 //cambion de contrasenia
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
@@ -56,3 +61,4 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 Route::get('password-change', function() {
     return view('password-reset');
 })->name('password.change');
+

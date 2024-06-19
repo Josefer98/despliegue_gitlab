@@ -19,6 +19,11 @@
                         
                     </div>
                     <div class="form-group">
+                        <label for="area">Area</label>
+                        <input type="text" name="area" class="form-control" id="area" placeholder="Area...">
+                        
+                    </div>
+                    <div class="form-group">
                         <label for="palabras_clave">Palabras clave</label>
                         <input type="text" name="palabras_clave" class="form-control" id="palabras_clave" placeholder="palabra1, palabra2,....">
                     </div>
