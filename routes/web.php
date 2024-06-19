@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\ReporteTemasController;
+use App\Models\Reporte_temas;
 
 //Route::get('/', function () {return view('welcome');});
 
@@ -43,7 +45,7 @@ Route::get('/usuarios/{id}/detalles-registro', [EstudiantesController::class, 'd
 
 Route::resource('temas',TemaController::class)->middleware('auth');
 Route::resource('docente',DocenteController::class)->middleware('auth');
-
+Route::resource('Reporte_temas',ReporteTemasController::class)->middleware('auth');
 
 Route::get('/temas/informacion/{tema}',[TemaController::class, 'informacion'])->name('temas.informacion');
 Route::get('/asesor',[TemaController::class, 'asesor'])->name('temas.asesor');

@@ -146,6 +146,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="{{ url('/Reporte_temas') }}" class="nav-link">
+                                <i class="nav-icon fas fa-book-open"></i>
+                                <p class="text-rigth">
+                                    Reporte de Temas de Grado
+                                </p>
+                            </a>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
